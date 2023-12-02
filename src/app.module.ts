@@ -5,17 +5,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { EmployersModule } from './employers/employers.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [databaseConfig],
-    }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [
+        ConfigModule.forRoot({
+          load: [databaseConfig],
+        }),
+      ],
+      inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const conf = {
+        return {
           type: config.get('type') satisfies PostgresConnectionOptions['type'],
           host: config.get<string>('host'),
           port: config.get<number>('port'),
@@ -23,10 +25,9 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
           password: config.get<string>('password'),
           database: config.get<string>('database'),
         };
-        return conf;
       },
-      inject: [ConfigService],
     }),
+    EmployersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
