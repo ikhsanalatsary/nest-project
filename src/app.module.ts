@@ -24,6 +24,7 @@ import { EmployersModule } from './employers/employers.module';
           username: config.get<string>('user'),
           password: config.get<string>('password'),
           database: config.get<string>('database'),
+          autoLoadEntities: true,
         };
       },
     }),
