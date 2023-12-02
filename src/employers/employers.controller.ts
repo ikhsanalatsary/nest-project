@@ -18,17 +18,17 @@ export class EmployersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.employersService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.employersService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmployerDto: UpdateEmployerDto) {
-    return this.employersService.update(+id, updateEmployerDto);
+  update(@Param('id') id: number, @Body() updateEmployerDto: UpdateEmployerDto) {
+    return this.employersService.update(id, updateEmployerDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.employersService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.employersService.remove(id);
   }
 }
