@@ -12,6 +12,7 @@ import { AttendancesModule } from './attendances/attendances.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.development'] }),
     TypeOrmModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
@@ -27,6 +28,7 @@ import { AttendancesModule } from './attendances/attendances.module';
           username: config.get<string>('user'),
           password: config.get<string>('password'),
           database: config.get<string>('database'),
+          ssl: config.get('ssl'),
           autoLoadEntities: true,
         };
       },
