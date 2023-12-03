@@ -3,8 +3,8 @@ create table
     id bigint primary key generated always as identity,
     name text,
     address text,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone
+    created_at timestamp with time zone default current_timestamp,
+    updated_at timestamp with time zone default current_timestamp
   );
 
 create table
@@ -12,8 +12,8 @@ create table
     id bigint primary key generated always as identity,
     name text,
     employer_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    created_at timestamp with time zone default current_timestamp,
+    updated_at timestamp with time zone default current_timestamp,
     foreign key (employer_id) references employers (id)
   );
 
@@ -24,8 +24,8 @@ create table
     age integer,
     gender text,
     department_id bigint,
-    created_at timestamp with time zone,
-    updated_at timestamp with time zone,
+    created_at timestamp with time zone default current_timestamp,
+    updated_at timestamp with time zone default current_timestamp,
     foreign key (department_id) references departments (id)
   );
 
@@ -44,28 +44,13 @@ create table
 insert into
   employers (name, address, created_at, updated_at)
 values
-  (
-    'ABC Company',
-    '123 Main St',
-    current_timestamp,
-    current_timestamp
-  );
+  ('ABC Company', '123 Main St', default, default);
 
 insert into
   departments (name, employer_id, created_at, updated_at)
 values
-  (
-    'Marketing',
-    1,
-    current_timestamp,
-    current_timestamp
-  ),
-  (
-    'Finance',
-    1,
-    current_timestamp,
-    current_timestamp
-  );
+  ('Marketing', 1, default, default),
+  ('Finance', 1, default, default);
 
 insert into
   employees (
@@ -77,43 +62,15 @@ insert into
     updated_at
   )
 values
-  (
-    'John Doe',
-    30,
-    'Male',
-    1,
-    current_timestamp,
-    current_timestamp
-  ),
-  (
-    'Jane Smith',
-    25,
-    'Female',
-    1,
-    current_timestamp,
-    current_timestamp
-  ),
+  ('John Doe', 30, 'Male', 1, default, default),
+  ('Jane Smith', 25, 'Female', 1, default, default),
   (
     'Michael Johnson',
     35,
     'Male',
     2,
-    current_timestamp,
-    current_timestamp
+    default,
+    default
   ),
-  (
-    'Emily Davis',
-    28,
-    'Female',
-    2,
-    current_timestamp,
-    current_timestamp
-  ),
-  (
-    'David Wilson',
-    32,
-    'Male',
-    2,
-    current_timestamp,
-    current_timestamp
-  );
+  ('Emily Davis', 28, 'Female', 2, default, default),
+  ('David Wilson', 32, 'Male', 2, default, default);

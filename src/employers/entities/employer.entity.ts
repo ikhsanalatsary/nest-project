@@ -1,10 +1,5 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Department } from 'src/departments/entities/department.entity';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 export interface IEmployer {
   id: number;
@@ -30,4 +25,7 @@ export class Employer implements IEmployer {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Department, (departement) => departement.employer)
+  departments: Department[];
 }
