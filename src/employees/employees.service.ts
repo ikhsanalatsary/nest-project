@@ -27,7 +27,7 @@ export class EmployeesService {
     try {
       const result = await this.employeeRepository.findOne({
         where: { id },
-        relations: { department: true },
+        relations: { department: true, attendances: true },
       });
       if (result) {
         return result;

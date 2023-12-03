@@ -1,5 +1,5 @@
 import { IsInt, IsNotEmpty, IsString } from 'class-validator';
-import { IDepartment } from '../entities/department.entity';
+import { type IDepartment } from '../entities/department.entity';
 
 export class CreateDepartmentDto implements Pick<IDepartment, 'name' | 'employer_id'> {
   @IsString()

@@ -1,5 +1,6 @@
+import { Attendance } from 'src/attendances/entitities/attendance.entitity';
 import { Department } from 'src/departments/entities/department.entity';
-import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, Entity, OneToMany } from 'typeorm';
 
 export interface IEmployee {
   id: number;
@@ -37,4 +38,7 @@ export class Employee implements IEmployee {
   @ManyToOne(() => Department, (departement) => departement.employees)
   @JoinColumn({ name: 'department_id' })
   department: Department;
+
+  @OneToMany(() => Attendance, (attendance) => attendance.employee)
+  attendances: Attendance[];
 }

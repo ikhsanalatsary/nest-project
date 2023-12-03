@@ -8,6 +8,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import { EmployersModule } from './employers/employers.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { EmployeesModule } from './employees/employees.module';
+import { AttendancesModule } from './attendances/attendances.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { EmployeesModule } from './employees/employees.module';
     EmployersModule,
     DepartmentsModule,
     EmployeesModule,
+    AttendancesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

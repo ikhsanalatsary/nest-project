@@ -1,5 +1,5 @@
 import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { IEmployee } from '../entities/employee.entity';
+import { type IEmployee } from '../entities/employee.entity';
 
 export class CreateEmployeeDto implements Omit<IEmployee, 'id' | 'created_at' | 'updated_at'> {
   @IsInt()
