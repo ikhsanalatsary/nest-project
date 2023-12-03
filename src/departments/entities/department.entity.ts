@@ -6,8 +6,10 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Employer } from '../../employers/entities/employer.entity';
+import { Employee } from '../../employees/entities/employee.entity';
 
 export interface IDepartment {
   id: number;
@@ -37,4 +39,7 @@ export class Department implements IDepartment {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => Employee, (employee) => employee.department)
+  employees: Employee[];
 }

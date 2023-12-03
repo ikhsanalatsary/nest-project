@@ -20,7 +20,7 @@ export class DepartmentsService {
   }
 
   async findAll() {
-    return this.departmentRepository.find({ relations: { employer: true } });
+    return this.departmentRepository.find({ relations: { employer: true, employees: true } });
   }
 
   async findOne(id: number) {

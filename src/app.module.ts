@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { EmployersModule } from './employers/employers.module';
 import { DepartmentsModule } from './departments/departments.module';
+import { EmployeesModule } from './employees/employees.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { DepartmentsModule } from './departments/departments.module';
     }),
     EmployersModule,
     DepartmentsModule,
+    EmployeesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
