@@ -7,10 +7,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class EmployersService {
-  constructor(
-    @InjectRepository(Employer)
-    private readonly employerRepository: Repository<Employer>,
-  ) {}
+  constructor(@InjectRepository(Employer) private readonly employerRepository: Repository<Employer>) {}
 
   async create(createEmployerDto: CreateEmployerDto) {
     try {
@@ -18,24 +15,24 @@ export class EmployersService {
       const result = await this.employerRepository.save(employer);
       return result;
     } catch (error) {
-      return new UnprocessableEntityException(error);
+      throw new UnprocessableEntityException(error);
     }
   }
 
   async findAll() {
-    return this.employerRepository.find();
+    return this.employerRepository.find({ relations: { departments: true } });
   }
 
   async findOne(id: number) {
     try {
-      const result = await this.employerRepository.findOne({ where: { id } });
+      const result = await this.employerRepository.findOne({ where: { id }, relations: { departments: true } });
       if (result) {
         return result;
       }
 
-      return new NotFoundException('Data tidak ditemukan');
+      return Promise.reject(new NotFoundException('Data tidak ditemukan'));
     } catch (error) {
-      return new BadRequestException(error);
+      throw new BadRequestException(error);
     }
   }
 
@@ -44,11 +41,11 @@ export class EmployersService {
       const employer = this.employerRepository.create(updateEmployerDto);
       const result = await this.employerRepository.update(id, employer);
       if (Number(result.affected) === 0) {
-        return new NotFoundException('Data tidak ditemukan');
+        return Promise.reject(new NotFoundException('Data tidak ditemukan'));
       }
       return this.findOne(id);
     } catch (error) {
-      return new UnprocessableEntityException(error);
+      throw new UnprocessableEntityException(error);
     }
   }
 
@@ -56,7 +53,7 @@ export class EmployersService {
     try {
       return await this.employerRepository.delete(id);
     } catch (error) {
-      return new BadRequestException(error);
+      throw new BadRequestException(error);
     }
   }
 }
