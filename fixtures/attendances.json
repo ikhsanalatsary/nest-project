@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "employee_id": 1,
+    "date": "2023-12-03 00:00:00+00",
+    "latitude": -85.89537,
+    "longitude": -40.22452,
+    "check_in": true,
+    "check_out": false
+  },
+  {
+    "id": 2,
+    "employee_id": 1,
+    "date": "2023-12-03 07:32:24.186+00",
+    "latitude": -85.89537,
+    "longitude": -40.22452,
+    "check_in": true,
+    "check_out": false
+  },
+  {
+    "id": 3,
+    "employee_id": 1,
+    "date": "2023-12-03 07:50:00+00",
+    "latitude": -85.89537,
+    "longitude": -40.22452,
+    "check_in": true,
+    "check_out": false
+  },
+  {
+    "id": 4,
+    "employee_id": 1,
+    "date": "2023-12-03 07:53:00+00",
+    "latitude": -85.89537,
+    "longitude": -40.22452,
+    "check_in": false,
+    "check_out": true
+  }
+]
